@@ -4,8 +4,9 @@
     </mat-card-header>
 
     <mat-card-content>
-        <table>
-
+        <table mat-table [dataSource]="datasource">
+            <tr mat-header-row *matHeaderRowDef="displayHeaders"></tr>
+            <tr mat-row *matRowDef="let row; columns:displayHeaders"></tr>
         </table>
     </mat-card-content>
 </mat-card>
