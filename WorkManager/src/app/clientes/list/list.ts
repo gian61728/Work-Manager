@@ -15,7 +15,7 @@ export class List implements OnInit,OnDestroy{
   }
   ngOnInit(): void {
   }
-  ngOnDestroy(): void {
+  ngOnDestroy(): void { 
   }
 
 }
