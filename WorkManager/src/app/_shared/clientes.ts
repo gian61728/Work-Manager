@@ -12,7 +12,7 @@ export class Clientes {
 
   }
   // pega os todos do clientes mostrando a tabela por inteira 
-  Getall() {
+  GeTall() {
     return this.http.get<clientesModel[]>(this.apiBaseUrl + '/clientes');
   }
 

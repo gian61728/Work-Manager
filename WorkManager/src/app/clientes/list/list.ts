@@ -17,7 +17,7 @@ export class List implements OnInit, OnDestroy {
   _list: clientesModel[] = [];
   subs = new Subscription();
   //display vai mostrar a parte de cima com os nomes de cada tabela
-  displayHeaders = ['id', 'nomes', 'address']
+  displayHeaders = ['id', 'nome', 'idade', 'telefone']
   datasource!: MatTableDataSource<clientesModel>;
   constructor(private service: Clientes) {
 
