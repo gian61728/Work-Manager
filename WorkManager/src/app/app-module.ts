@@ -1,12 +1,22 @@
-import { NgModule, provideBrowserGlobalErrorListeners } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { ApplicationConfig, NgModule, provideBrowserGlobalErrorListeners, provideZonelessChangeDetection } from '@angular/core';
+import { BrowserModule, provideClientHydration, withEventReplay } from '@angular/platform-browser';
 
-import { AppRoutingModule } from './app-routing-module';
+import { AppRoutingModule, routes } from './app-routing-module';
 import { App } from './app';
 import { List } from './clientes/list/list';
 import { Add } from './clientes/add/add';
 import { provideHttpClient, withFetch } from '@angular/common/http';
+import { provideRouter } from '@angular/router';
 
+ const appConfig: ApplicationConfig = {
+  providers: [
+    provideBrowserGlobalErrorListeners(),
+    provideZonelessChangeDetection(),
+    provideRouter(routes), provideClientHydration(withEventReplay()),
+    provideHttpClient(withFetch())
+  ]
+}
+;
 @NgModule({
   declarations: [
     App,
@@ -16,10 +26,9 @@ import { provideHttpClient, withFetch } from '@angular/common/http';
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [
-    provideBrowserGlobalErrorListeners(),
-    provideHttpClient(withFetch())
-  ],
+ 
+
   bootstrap: [App]
+  
 })
 export class AppModule { }

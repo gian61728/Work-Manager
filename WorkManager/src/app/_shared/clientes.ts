@@ -7,12 +7,12 @@ import { clientesModel } from '../../model/clientes';
 })
 export class Clientes {
   //https://special-trout-v69vqjp65v5gfxpw6-3000.app.github.dev/clientes
-  apiBaseUrl = 'http://localhost:3000';
-  constructor(private http: HttpClient) {
+  apiBaseUrl = 'https://special-trout-v69vqjp65v5gfxpw6-3000.app.github.dev';
+  constructor(private http:HttpClient) {
 
   }
   // pega os todos do clientes mostrando a tabela por inteira 
-  GeTall() {
+  Getall() {
     return this.http.get<clientesModel[]>(this.apiBaseUrl + '/clientes');
   }
 
