@@ -36,10 +36,13 @@ export class List implements OnInit, OnDestroy {
   }
 
   loadClientes() {
-    const sub = this.service.Getall().subscribe(items => {
-      this._list = items;
-      this.dataSource.data = this._list;
-    }, error => console.error('Erro ao carregar clientes:', error));
+    const sub = this.service.Getall().subscribe({
+      next: items => {
+        this._list = items;
+        this.dataSource.data = this._list;
+      },
+      error: err => console.error('Erro ao carregar clientes:', err)
+    });
     this.subs.add(sub);
   }
 
@@ -53,13 +56,13 @@ export class List implements OnInit, OnDestroy {
   }
 
   editCliente(cliente: clientesModel) {
-    if (!cliente?.id && cliente?.id !== 0) return;
+    if (cliente?.id === null || cliente?.id === undefined) return;
     this.openDialog(cliente);
   }
 
   deleteCliente(id: number) {
     const clienteId = Number(id);
-    if (!clienteId && clienteId !== 0) return;
+    if (clienteId === null || clienteId === undefined) return;
 
     if (confirm('Deseja realmente deletar este cliente?')) {
       this.service.Delete(clienteId).subscribe({
@@ -80,4 +83,3 @@ export class List implements OnInit, OnDestroy {
     });
   }
 }
-
