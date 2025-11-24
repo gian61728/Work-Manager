@@ -19,32 +19,24 @@
     {
       "id": 3,
       "nome": "luis",
-      "idade": "23",
-      "telefone": "1312",
-      "cpf": "1221",
-      "rg": "1212"
+      "idade": "132",
+      "telefone": "123",
+      "cpf": "123",
+      "rg": "123"
     },
     {
       "id": 4,
-      "nome": "luis henrique",
-      "idade": "33",
-      "telefone": "12123",
-      "cpf": "12312",
-      "rg": "312132"
+      "nome": "132",
+      "idade": "213",
+      "telefone": "132",
+      "cpf": "132",
+      "rg": "132"
     },
     {
       "id": 5,
-      "nome": "luis",
+      "nome": "132",
       "idade": "312",
-      "telefone": "213",
-      "cpf": "123",
-      "rg": "321"
-    },
-    {
-      "id": 6,
-      "nome": "luis",
-      "idade": 132,
-      "telefone": "132",
+      "telefone": "312",
       "cpf": "132",
       "rg": "132"
     }

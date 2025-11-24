@@ -1,17 +1,18 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
-import { MatTable, MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { MatTableModule, MatTable, MatTableDataSource } from '@angular/material/table';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { Subscription } from 'rxjs';
 import { Clientes } from '../../_shared/clientes';
 import { clientesModel } from '../../../model/clientes';
-import { Subscription } from 'rxjs';
 import { Add } from '../add/add';
 
 @Component({
   selector: 'app-list',
   standalone: true,
-  imports: [MatCardModule, MatButtonModule, MatTableModule, MatDialogModule],
+  imports: [CommonModule, MatCardModule, MatButtonModule, MatTableModule, MatDialogModule],
   templateUrl: './list.html',
   styleUrls: ['./list.css']
 })
@@ -20,9 +21,9 @@ export class List implements OnInit, OnDestroy {
   _list: clientesModel[] = [];
   subs = new Subscription();
   displayedColumns: string[] = ['id', 'nome', 'idade', 'telefone', 'cpf', 'rg', 'action'];
-  dataSource!: MatTableDataSource<clientesModel>;
+  dataSource = new MatTableDataSource<clientesModel>();
 
-  @ViewChild(MatTable) table!: MatTable<any>;
+  @ViewChild(MatTable) table!: MatTable<clientesModel>;
 
   constructor(private service: Clientes, private dialog: MatDialog) {}
 
@@ -37,18 +38,14 @@ export class List implements OnInit, OnDestroy {
   loadClientes() {
     const sub = this.service.Getall().subscribe(items => {
       this._list = items;
-      this.dataSource = new MatTableDataSource(this._list);
-    });
+      this.dataSource.data = this._list;
+    }, error => console.error('Erro ao carregar clientes:', error));
     this.subs.add(sub);
   }
 
   refreshTable() {
-    const sub = this.service.Getall().subscribe(items => {
-      this._list = items;
-      this.dataSource.data = this._list;
-      this.table.renderRows();
-    });
-    this.subs.add(sub);
+    this.loadClientes();
+    this.table?.renderRows();
   }
 
   addCliente() {
@@ -56,14 +53,18 @@ export class List implements OnInit, OnDestroy {
   }
 
   editCliente(cliente: clientesModel) {
+    if (!cliente?.id && cliente?.id !== 0) return;
     this.openDialog(cliente);
   }
 
   deleteCliente(id: number) {
+    const clienteId = Number(id);
+    if (!clienteId && clienteId !== 0) return;
+
     if (confirm('Deseja realmente deletar este cliente?')) {
-      this.service.Delete(id).subscribe(() => {
-        alert('Cliente deletado.');
-        this.refreshTable();
+      this.service.Delete(clienteId).subscribe({
+        next: () => this.refreshTable(),
+        error: (err) => console.error('Erro ao deletar cliente:', err)
       });
     }
   }
@@ -79,3 +80,4 @@ export class List implements OnInit, OnDestroy {
     });
   }
 }
+
