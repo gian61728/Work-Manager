@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, ViewChild, viewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTable, MatTableDataSource, MatTableModule } from '@angular/material/table';
@@ -50,9 +50,9 @@ export class List implements OnInit, OnDestroy {
     this.dialog.open(Add,{
       width: '40%',
       enterAnimationDuration:'1000ms',
-      exitAnimationDuration:'1000ms'
+      exitAnimationDuration:'1000ms',
       data:{
-        id
+        id : id
       }
     }).afterClosed().subscribe(s =>{
      

@@ -8,13 +8,13 @@ describe('List', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [List]
+      imports: [List]
     })
     .compileComponents();
 
     fixture = TestBed.createComponent(List);
     component = fixture.componentInstance;
-    await fixture.whenStable();
+    fixture.detectChanges();
   });
 
   it('should create', () => {

@@ -42,11 +42,11 @@
                 <th mat-header-cell *matHeaderCellDef>Ações</th>
                 <td mat-cell *matCellDef="let element">
                     <button mat-raised-button color="primary" (click)="Edit(element.id)">Editar</button>
-                    <button mat-raised-button color="accent" (click)="Delete(element.id)>Excluir</button>
+                    <button mat-raised-button color="accent" (click)="Delete(element.id)">Excluir</button>
                 </td>
             </ng-container>
 
-            <tr style="background-color: blue;color: white" mat-header-row *matHeaderRowDef="displayHeaders"></tr>
+            <tr style="background-color: blue;color: white;" mat-header-row *matHeaderRowDef="displayHeaders"></tr>
             <tr mat-row *matRowDef="let row; columns:displayHeaders"></tr>
         </table>
     </mat-card-content>
