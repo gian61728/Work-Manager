@@ -7,62 +7,75 @@ import { Clientes } from '../../_shared/clientes';
 import { clientesModel } from '../../../model/clientes';
 import { Subscription } from 'rxjs';
 import { Add } from '../add/add';
+
 @Component({
   selector: 'app-list',
+  standalone: true,
   imports: [MatCardModule, MatButtonModule, MatTableModule, MatDialogModule],
   templateUrl: './list.html',
-  styleUrl: './list.css'
+  styleUrls: ['./list.css']
 })
-
 export class List implements OnInit, OnDestroy {
 
   _list: clientesModel[] = [];
   subs = new Subscription();
-  //display vai mostrar a parte de cima com os nomes de cada tabela
-  displayHeaders = ['id', 'nome', 'idade', 'telefone','cpf','rg','action']
-  datasource!: MatTableDataSource<clientesModel>;
-  @ViewChild(MatTable) table !:MatTable<any>
-  constructor(private service: Clientes,private dialog:MatDialog) {
+  displayedColumns: string[] = ['id', 'nome', 'idade', 'telefone', 'cpf', 'rg', 'action'];
+  dataSource!: MatTableDataSource<clientesModel>;
 
-  }
+  @ViewChild(MatTable) table!: MatTable<any>;
 
-  UpdateList() {
-    let _sub = this.service.Getall().subscribe(item => {
-      this._list = item;
-      this.datasource.data =this._list;
-      this.table.renderRows();
-    });
-    this.subs.add(_sub);
-  }
+  constructor(private service: Clientes, private dialog: MatDialog) {}
 
   ngOnInit(): void {
-    this.GetallList();
+    this.loadClientes();
   }
+
   ngOnDestroy(): void {
     this.subs.unsubscribe();
   }
 
-  add(){
-    this.openPopup("0");
+  loadClientes() {
+    const sub = this.service.Getall().subscribe(items => {
+      this._list = items;
+      this.dataSource = new MatTableDataSource(this._list);
+    });
+    this.subs.add(sub);
   }
-//janela que vai ser aberta
-  openPopup(id:string){
-    this.dialog.open(Add,{
-      width: '40%',
-      enterAnimationDuration:'1000ms',
-      exitAnimationDuration:'1000ms',
-      data:{
-        id : id
-      }
-    }).afterClosed().subscribe(s =>{
-     
-      this.UpdateList();
-    })
-  }
-  Edit(id:any){
-    this.openPopup(id);
-  }
-  Delete(id:any){
 
+  refreshTable() {
+    const sub = this.service.Getall().subscribe(items => {
+      this._list = items;
+      this.dataSource.data = this._list;
+      this.table.renderRows();
+    });
+    this.subs.add(sub);
+  }
+
+  addCliente() {
+    this.openDialog(null);
+  }
+
+  editCliente(cliente: clientesModel) {
+    this.openDialog(cliente);
+  }
+
+  deleteCliente(id: number) {
+    if (confirm('Deseja realmente deletar este cliente?')) {
+      this.service.Delete(id).subscribe(() => {
+        alert('Cliente deletado.');
+        this.refreshTable();
+      });
+    }
+  }
+
+  private openDialog(cliente: clientesModel | null) {
+    const dialogRef = this.dialog.open(Add, {
+      width: '40%',
+      data: cliente ? { id: cliente.id } : null
+    });
+
+    dialogRef.afterClosed().subscribe(changed => {
+      if (changed) this.refreshTable();
+    });
   }
 }

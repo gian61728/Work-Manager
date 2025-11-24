@@ -1,36 +1,33 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { clientesModel } from '../../model/clientes';
+import { environment } from '../../environments/environment';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class Clientes {
-  //https://special-trout-v69vqjp65v5gfxpw6-3000.app.github.dev/clientes
-  apiBaseUrl = 'https://special-trout-v69vqjp65v5gfxpw6-3000.app.github.dev';
-  constructor(private http:HttpClient) {
+  apiBaseUrl = environment.apiBaseUrl;
 
-  }
-  // pega os todos do clientes mostrando a tabela por inteira 
+  constructor(private http: HttpClient) {}
+
   Getall() {
-    return this.http.get<clientesModel[]>(this.apiBaseUrl + '/clientes');
+    return this.http.get<clientesModel[]>(`${this.apiBaseUrl}/clientes`);
   }
 
-  //pegar os dados do clientes
   Get(id: number) {
-   return this.http.get<clientesModel>(this.apiBaseUrl + '/clientes/' + id);
+    return this.http.get<clientesModel>(`${this.apiBaseUrl}/clientes/${id}`);
   }
-  //deleta os dados do clientes
+
   Delete(id: number) {
-   return this.http.delete(this.apiBaseUrl + '/clientes/' + id);
+    return this.http.delete(`${this.apiBaseUrl}/clientes/${id}`);
   }
-  //data e os dados meus
-  //update dos dados clientes
+
   Update(data: clientesModel) {
-   return this.http.put(this.apiBaseUrl + '/clientes/' + data.id, data);
+    return this.http.put<clientesModel>(`${this.apiBaseUrl}/clientes/${data.id}`, data);
   }
-  // cliar dados clientes
-  Create(data: clientesModel) {
-   return this.http.post(this.apiBaseUrl + '/clientes', data);
+
+  Create(data: Omit<clientesModel, 'id'>) {
+    return this.http.post<clientesModel>(`${this.apiBaseUrl}/clientes`, data);
   }
 }
