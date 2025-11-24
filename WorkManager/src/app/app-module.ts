@@ -19,12 +19,13 @@ import { provideRouter } from '@angular/router';
 ;
 @NgModule({
   declarations: [
-    App,
-    Add
+    App
+    
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    Add
   ],
  
 

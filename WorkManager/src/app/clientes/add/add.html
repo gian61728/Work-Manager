@@ -1,1 +1,52 @@
-<p>add works!</p>
+<form [formGroup]="_form" (ngSubmit)="salvar()">
+
+<mat-card>
+    <mat-card-header>
+        <h1>Add Clientes</h1>
+
+    </mat-card-header>
+    <mat-card-content>
+
+       <mat-form-field class="example-full-width">
+            <mat-label>Id</mat-label>
+            <input matInput formControlName="id">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+
+            <mat-label>nome</mat-label>
+            <input matInput formControlName="nome">
+        </mat-form-field>
+
+       <mat-form-field class="example-full-width">
+
+            <mat-label>idade</mat-label>
+            <input matInput formControlName="idade">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+
+            <mat-label>telefone</mat-label>
+            <input matInput formControlName="telefone">
+        </mat-form-field>
+
+       <mat-form-field class="example-full-width">
+
+            <mat-label>cpf</mat-label>
+            <input matInput formControlName="cpf">
+        </mat-form-field>
+
+       <mat-form-field class="example-full-width">
+
+            <mat-label>rg</mat-label>
+            <input matInput formControlName="rg">
+        </mat-form-field>
+
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-raised-button color="primary" type="submit">salvar</button>
+        <a mat-raised-button color="accent" (click)="close()">Fechar</a>
+    </mat-card-actions>
+
+</mat-card>
+</form>
