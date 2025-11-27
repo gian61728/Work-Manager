@@ -1,8 +1,8 @@
 
 export interface servicosModel {
   id: number;
-  clienteId: number;   // Alterado para number
-  prestadorId: number; // Alterado para number
+  clienteId: number;   
+  prestadorId: number; 
   descricao: string;
   inicio: string;
   fim: string;

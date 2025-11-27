@@ -7,6 +7,7 @@ export const routes: Routes = [
   { path: '', component: List },
   { path: 'prestadores', component: ListPrestador  },
   { path: 'servicos', component: ListServico  },
+  { path: 'clientes', component: List  },
 ];
 
 

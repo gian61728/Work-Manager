@@ -1,72 +1,62 @@
+<div style="display: flex; gap: 10px; margin-bottom: 15px;">
+  <button mat-raised-button color="primary" routerLink="/clientes">Clientes</button>
+  <button mat-raised-button color="accent" routerLink="/prestadores">Prestadores</button>
+</div>
+
 <mat-card>
+  <mat-card-header class="header-left">
+    <button mat-raised-button color="primary" (click)="addServico()">Adicionar Serviço</button>
+  </mat-card-header>
 
-  <div style="display: flex; gap: 10px; margin-bottom: 15px;">
-    <button mat-raised-button color="primary" routerLink="/clientes">Clientes</button>
-    <button mat-raised-button color="accent" routerLink="/prestadores">Prestadores</button>
-  </div>
+  <mat-card-content>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
-  <div style="display: flex; justify-content: flex-end; margin-bottom: 15px;">
-    <button mat-raised-button color="primary" (click)="addServico()">
-      Adicionar Serviço
-    </button>
-  </div>
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef>ID</th>
+        <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+      </ng-container>
 
-  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" style="width: 100%;">
+      <ng-container matColumnDef="clienteNome">
+        <th mat-header-cell *matHeaderCellDef>Cliente</th>
+        <td mat-cell *matCellDef="let element">{{ element.clienteNome }}</td>
+      </ng-container>
 
-    <!-- ID -->
-    <ng-container matColumnDef="id">
-      <th mat-header-cell *matHeaderCellDef> ID </th>
-      <td mat-cell *matCellDef="let s"> {{ s.id }} </td>
-    </ng-container>
+      <ng-container matColumnDef="prestadorNome">
+        <th mat-header-cell *matHeaderCellDef>Prestador</th>
+        <td mat-cell *matCellDef="let element">{{ element.prestadorNome }}</td>
+      </ng-container>
 
-    <!-- Cliente (Nome) -->
-    <ng-container matColumnDef="clienteNome">
-      <th mat-header-cell *matHeaderCellDef> Cliente </th>
-      <td mat-cell *matCellDef="let s"> {{ s.clienteNome }} </td>
-    </ng-container>
+      <ng-container matColumnDef="descricao">
+        <th mat-header-cell *matHeaderCellDef>Descrição</th>
+        <td mat-cell *matCellDef="let element">{{ element.descricao }}</td>
+      </ng-container>
 
-    <!-- Prestador (Nome) -->
-    <ng-container matColumnDef="prestadorNome">
-      <th mat-header-cell *matHeaderCellDef> Prestador </th>
-      <td mat-cell *matCellDef="let s"> {{ s.prestadorNome }} </td>
-    </ng-container>
+      <ng-container matColumnDef="inicio">
+        <th mat-header-cell *matHeaderCellDef>Início</th>
+        <td mat-cell *matCellDef="let element">{{ element.inicio }}</td>
+      </ng-container>
 
-    <!-- Descrição -->
-    <ng-container matColumnDef="descricao">
-      <th mat-header-cell *matHeaderCellDef> Descrição </th>
-      <td mat-cell *matCellDef="let s"> {{ s.descricao }} </td>
-    </ng-container>
+      <ng-container matColumnDef="fim">
+        <th mat-header-cell *matHeaderCellDef>Fim</th>
+        <td mat-cell *matCellDef="let element">{{ element.fim }}</td>
+      </ng-container>
 
-    <!-- Início -->
-    <ng-container matColumnDef="inicio">
-      <th mat-header-cell *matHeaderCellDef> Início </th>
-      <td mat-cell *matCellDef="let s"> {{ s.inicio | date }} </td>
-    </ng-container>
+      <ng-container matColumnDef="ramo">
+        <th mat-header-cell *matHeaderCellDef>Ramo</th>
+        <td mat-cell *matCellDef="let element">{{ element.ramo }}</td>
+      </ng-container>
 
-    <!-- Fim -->
-    <ng-container matColumnDef="fim">
-      <th mat-header-cell *matHeaderCellDef> Fim </th>
-      <td mat-cell *matCellDef="let s"> {{ s.fim | date }} </td>
-    </ng-container>
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef>Ações</th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-raised-button color="accent" (click)="editServico(element)">Editar</button>
+          <button mat-raised-button color="warn" (click)="deleteServico(element.id)">Excluir</button>
+        </td>
+      </ng-container>
 
-    <!-- Ramo -->
-    <ng-container matColumnDef="ramo">
-      <th mat-header-cell *matHeaderCellDef> Ramo </th>
-      <td mat-cell *matCellDef="let s"> {{ s.ramo }} </td>
-    </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
-    <!-- Ações -->
-    <ng-container matColumnDef="action">
-      <th mat-header-cell *matHeaderCellDef> Ações </th>
-      <td mat-cell *matCellDef="let s">
-        <button mat-button color="accent" (click)="editServico(s)">Editar</button>
-        <button mat-button color="warn" (click)="deleteServico(s.id)">Excluir</button>
-      </td>
-    </ng-container>
-
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-
-  </table>
-
+    </table>
+  </mat-card-content>
 </mat-card>

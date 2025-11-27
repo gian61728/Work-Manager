@@ -16,9 +16,10 @@ import { Prestadores } from '../../_shared/prestadores';
 import { prestadoresModel } from '../../../model/prestadores';
 
 import { Addservicos } from '../add/add';
+import { RouterLink } from '@angular/router';
 
 @Component({
-  selector: 'app-list',
+  selector: 'app-list-servico',
   standalone: true,
   imports: [
     CommonModule,
@@ -26,6 +27,7 @@ import { Addservicos } from '../add/add';
     MatButtonModule,
     MatTableModule,
     MatDialogModule,
+    RouterLink
   ],
   templateUrl: './list.html',
   styleUrls: ['./list.css']

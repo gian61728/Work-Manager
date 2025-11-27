@@ -8,11 +8,12 @@ import { Subscription } from 'rxjs';
 import { Prestadores } from '../../_shared/prestadores';
 import { prestadoresModel } from '../../../model/prestadores';
 import { AddPrestadores } from '../add/add';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-list-prestador',
   standalone: true,
-  imports: [CommonModule, MatCardModule, MatButtonModule, MatTableModule, MatDialogModule],
+  imports: [CommonModule, MatCardModule, MatButtonModule, MatTableModule, MatDialogModule,RouterLink],
   templateUrl: './list-prestador.html',
   styleUrls: ['./list-prestador.css']
 })
