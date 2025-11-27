@@ -3,7 +3,7 @@
     {
       "id": "1",
       "nome": "joao",
-      "idade": "21",
+      "idade": "28",
       "telefone": "1498524123",
       "cpf": "541.042.321.54",
       "rg": "312312412"
@@ -18,27 +18,80 @@
     },
     {
       "id": "4",
-      "nome": "gian",
+      "nome": "gianh",
       "idade": "213",
       "telefone": "132",
       "cpf": "132",
       "rg": "132"
     },
     {
-      "id": "5",
-      "nome": "pedro",
-      "idade": "32",
-      "telefone": "231",
-      "cpf": "312",
-      "rg": "132"
+      "id": 5,
+      "nome": "luis",
+      "idade": "12",
+      "telefone": "12",
+      "cpf": "12",
+      "rg": "12"
+    }
+  ],
+  "prestadores": [
+    {
+      "id": "1",
+      "nome": "Empresa X",
+      "telefone": "11342314234",
+      "cnpj": "11.111.111/0001-11",
+      "email": "contato@empresax.com",
+      "endereco": "Rua A, 123",
+      "ramo": "Construção",
+      "senha": "123456"
     },
     {
-      "id": "6",
-      "nome": "aaaa",
-      "idade": "123",
-      "telefone": "132",
-      "cpf": "132",
-      "rg": "132"
+      "id": "2",
+      "nome": "Serviços Y",
+      "telefone": "1188888888",
+      "cnpj": "22.222.222/0001-22",
+      "email": "contato@servicosy.com",
+      "endereco": "Rua B, 459",
+      "ramo": "Limpeza",
+      "senha": "senha123"
+    },
+    {
+      "id": 3,
+      "nome": "Empresa R",
+      "telefone": "123123123",
+      "cnpj": "213123",
+      "email": "Empresa_R@gmail.com",
+      "endereco": "123132",
+      "ramo": "132123",
+      "senha": "332211"
+    }
+  ],
+  "servicos": [
+    {
+      "id": "1",
+      "clienteId": "1",
+      "prestadorId": "1",
+      "descricao": "Reforma na sala",
+      "inicio": "2025-01-10",
+      "fim": "2025-01-20",
+      "ramo": "Construção"
+    },
+    {
+      "id": "2",
+      "clienteId": "2",
+      "prestadorId": "2",
+      "descricao": "Limpeza pós-obra",
+      "inicio": "2025-02-01",
+      "fim": "2025-02-02",
+      "ramo": "Limpeza"
+    },
+    {
+      "id": 3,
+      "clienteId": "4",
+      "prestadorId": "2",
+      "descricao": "12312",
+      "inicio": "20004-10-09",
+      "fim": "1222-03-12",
+      "ramo": "123"
     }
   ]
 }

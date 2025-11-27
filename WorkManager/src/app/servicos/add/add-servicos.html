@@ -1,0 +1,58 @@
+<mat-card>
+
+  <h1>{{ title }}</h1>
+
+  <form [formGroup]="_form" (ngSubmit)="salvar()" style="display: flex; flex-direction: column; gap: 15px;">
+
+    <!-- Cliente -->
+    <mat-form-field appearance="outline">
+      <mat-label>Cliente</mat-label>
+      <mat-select formControlName="clienteId" required>
+        <mat-option *ngFor="let c of clientes" [value]="c.id">
+          {{ c.nome }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <!-- Prestador -->
+    <mat-form-field appearance="outline">
+      <mat-label>Prestador</mat-label>
+      <mat-select formControlName="prestadorId" required>
+        <mat-option *ngFor="let p of prestadores" [value]="p.id">
+          {{ p.nome }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <!-- Descrição -->
+    <mat-form-field appearance="outline">
+      <mat-label>Descrição</mat-label>
+      <input matInput formControlName="descricao" required />
+    </mat-form-field>
+
+    <!-- Início -->
+    <mat-form-field appearance="outline">
+      <mat-label>Início</mat-label>
+      <input matInput type="date" formControlName="inicio" required />
+    </mat-form-field>
+
+    <!-- Fim -->
+    <mat-form-field appearance="outline">
+      <mat-label>Fim</mat-label>
+      <input matInput type="date" formControlName="fim" required />
+    </mat-form-field>
+
+    <!-- Ramo -->
+    <mat-form-field appearance="outline">
+      <mat-label>Ramo</mat-label>
+      <input matInput formControlName="ramo" required />
+    </mat-form-field>
+
+    <div style="display: flex; justify-content: flex-end; gap: 10px;">
+      <button mat-raised-button color="primary" type="submit" [disabled]="!_form.valid">Salvar</button>
+      <button mat-raised-button color="warn" (click)="close()">Cancelar</button>
+    </div>
+
+  </form>
+
+</mat-card>
